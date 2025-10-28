@@ -1,0 +1,131 @@
+
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تطبيق إدارة المشاريع والمهام الذكي من Seven_code7">
+    <title>Seven_code7 Tasks - إدارة المشاريع</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="root" class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-section">
+                <h1>🎯 Seven_code7 Tasks</h1>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="btn-theme" title="الوضع الليلي (Ctrl+K)">🌙</button>
+                <button class="header-btn" id="btn-ai" title="المساعد الذكي (Ctrl+M)">🤖</button>
+                <button class="header-btn" id="btn-settings" title="الإعدادات (Ctrl+,)">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3 class="nav-title">المشاريع</h3>
+            <button class="btn-new" id="btn-new-project" title="Ctrl+N">
+                ➕ مشروع جديد
+            </button>
+            <ul id="projects-list" class="projects-list"></ul>
+            
+            <div class="sidebar-stats">
+                <div class="stat-item">
+                    <span class="stat-label">إجمالي</span>
+                    <span class="stat-value" id="total-projects">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">المهام</span>
+                    <span class="stat-value" id="total-tasks">0</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <small>© Seven_code7<br>تأسيس: ليث محمود معتصم</small>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="view-controls">
+                    <button class="view-btn active" id="view-kanban" title="Ctrl+1">📊 كانبان</button>
+                    <button class="view-btn" id="view-list" title="Ctrl+2">📋 قائمة</button>
+                    <button class="view-btn" id="view-table" title="Ctrl+3">📈 جدول</button>
+                </div>
+                <div class="filter-controls">
+                    <select id="filter-status" class="filter-select">
+                        <option value="">جميع الحالات</option>
+                        <option value="backlog">قيد الانتظار</option>
+                        <option value="doing">قيد الإنجاز</option>
+                        <option value="review">قيد المراجعة</option>
+                        <option value="done">مكتملة</option>
+                    </select>
+                    <select id="filter-priority" class="filter-select">
+                        <option value="">جميع الأولويات</option>
+                        <option value="low">منخفضة</option>
+                        <option value="medium">متوسطة</option>
+                        <option value="high">عالية</option>
+                        <option value="critical">حرجة</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div id="content-area" class="content-area">
+                <div class="empty-state">
+                    <div class="empty-icon">📭</div>
+                    <p>اختر مشروعًا أو أنشئ واحدًا جديدًا للبدء</p>
+                    <small>(Ctrl+N للإنشاء السريع)</small>
+                </div>
+            </div>
+        </main>
+
+        <!-- AI Panel -->
+        <aside id="ai-panel" class="ai-panel">
+            <div class="ai-header">
+                <h3>المساعد سبعة 🤖</h3>
+                <div class="ai-controls">
+                    <button class="ai-control-btn" id="btn-expand-ai" title="توسيع">⤢</button>
+                    <button class="ai-control-btn" id="btn-close-ai" title="إغلاق">✕</button>
+                </div>
+            </div>
+
+            <div class="ai-templates">
+                <button class="template-btn" data-prompt="خطط" title="خطة سريعة للمشروع">💡 خطة</button>
+                <button class="template-btn" data-prompt="قسّم" title="تقسيم المهام الكبيرة">✂️ تقسيم</button>
+                <button class="template-btn" data-prompt="جدول" title="جدول العمل الأسبوعي">📅 جدول</button>
+                <button class="template-btn" data-prompt="ملخص" title="ملخص اليوم">📊 ملخص</button>
+                <button class="template-btn" data-prompt="أولويات" title="ترتيب الأولويات">⭐ أولويات</button>
+                <button class="template-btn" data-prompt="أفكار" title="أفكار التحسين">💭 أفكار</button>
+            </div>
+
+            <div id="ai-chat" class="ai-chat"></div>
+
+            <div class="ai-input-area">
+                <div class="ai-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="ai-input" 
+                        class="ai-input" 
+                        placeholder="اكتب رسالة... (Enter)"
+                    >
+                    <button class="ai-send-btn" id="btn-ai-send" title="Send (Ctrl+Enter)">➤</button>
+                </div>
+                <small class="ai-hint">💡 اختر من الأزرار أعلاه أو اكتب رسالتك</small>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modals Container -->
+    <div id="modals-container"></div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
